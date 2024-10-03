@@ -1,4 +1,7 @@
+import 'package:countries/core/routes/app_routes.dart';
+import 'package:countries/global_bindings.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 void main() {
   runApp(const MainApp());
@@ -9,13 +12,12 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return GetMaterialApp(
+      title: 'Country App',
+      initialRoute: AppRoutes.initialRoute,
+      initialBinding: GlobalBindings(),
+      getPages: AppRoutes.pages,
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: Center(
-          child: Text('Countries'),
-        ),
-      ),
     );
   }
 }
