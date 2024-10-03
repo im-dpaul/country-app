@@ -7,7 +7,7 @@ class AppRoutes {
   static List<GetPage> pages = [
     GetPage(
       name: initialRoute,
-      page: () => const CountryScreen(),
+      page: () => CountryScreen(),
     ),
   ];
 }
