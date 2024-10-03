@@ -1,7 +1,6 @@
-import 'package:countries/core/constants/strings.dart';
-import 'package:countries/core/themes/app_text_styles.dart';
 import 'package:countries/features/countries/controllers/country_controller.dart';
 import 'package:countries/features/countries/widgets/country_tile.dart';
+import 'package:countries/features/countries/widgets/custom_app_bar.dart';
 import 'package:countries/features/countries/widgets/no_data_text.dart';
 import 'package:countries/features/countries/widgets/refresh_button.dart';
 import 'package:flutter/material.dart';
@@ -16,11 +15,11 @@ class CountryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () => Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            Strings.contryInfo,
-            style: AppTextStyles.f24w700Black,
-          ),
+        appBar: CustomAppBar(
+          visible: !_controller.isLoading && _controller.countries.isNotEmpty,
+          onSort: () {
+            _controller.filterCountriesAlphabetically();
+          },
         ),
         body: _controller.isLoading
             ? const Center(child: CircularProgressIndicator())
