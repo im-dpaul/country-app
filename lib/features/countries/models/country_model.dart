@@ -14,11 +14,12 @@ class CountryModel {
   });
 
   factory CountryModel.fromJson(Map<String, dynamic> json) {
+    Map currencies = json['currencies'].values.first;
     return CountryModel(
       commonName: json['name']['common'] ?? '',
       officialName: json['name']['official'] ?? '',
-      currencyCode: json['currencies'][0]['code'] ?? '',
-      currencyName: json['currencies'][0]['name'] ?? '',
+      currencyCode: currencies['symbol'] ?? '',
+      currencyName: currencies['name'] ?? '',
       flagUrl: json['flags']['png'] ?? '',
     );
   }

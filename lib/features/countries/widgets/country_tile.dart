@@ -1,4 +1,5 @@
 import 'package:countries/core/constants/strings.dart';
+import 'package:countries/core/themes/app_colors.dart';
 import 'package:countries/core/themes/app_text_styles.dart';
 import 'package:countries/features/countries/models/country_model.dart';
 import 'package:flutter/material.dart';
@@ -13,44 +14,54 @@ class CountryTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: Image.network(
-        country.flagUrl,
-        fit: BoxFit.contain,
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 12),
+      decoration: BoxDecoration(
+        color: AppColors.lightGrey.withOpacity(0.15),
+        borderRadius: BorderRadius.circular(6),
       ),
-      title: Text(
-        country.commonName,
-        style: AppTextStyles.f16w600Black,
-      ),
-      subtitle: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Row(
-            children: [
-              const Text(
-                Strings.officialName,
+      child: ListTile(
+        leading: Image.network(
+          country.flagUrl,
+          width: 88,
+          height: 60,
+          fit: BoxFit.fill,
+        ),
+        title: Text(
+          country.commonName,
+          style: AppTextStyles.f16w600Black,
+        ),
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const SizedBox(height: 2),
+            RichText(
+              text: TextSpan(
+                text: Strings.officialName,
                 style: AppTextStyles.f14w500LightGrey,
+                children: [
+                  TextSpan(
+                    text: country.officialName,
+                    style: AppTextStyles.f14w400Black,
+                  ),
+                ],
               ),
-              Text(
-                country.officialName,
-                style: AppTextStyles.f14w400Black,
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              const Text(
-                Strings.currency,
+            ),
+            RichText(
+              text: TextSpan(
+                text: Strings.currency,
                 style: AppTextStyles.f14w500LightGrey,
+                children: [
+                  TextSpan(
+                    text: '${country.currencyName} (${country.currencyCode})',
+                    style: AppTextStyles.f14w400Black,
+                  ),
+                ],
               ),
-              Text(
-                '${country.currencyName} (${country.currencyCode})',
-                style: AppTextStyles.f14w400Black,
-              ),
-            ],
-          ),
-        ],
+            ),
+          ],
+        ),
       ),
     );
   }

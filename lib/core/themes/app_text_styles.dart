@@ -12,6 +12,7 @@ class AppTextStyles {
     fontSize: 16,
     fontWeight: FontWeight.w600,
     color: AppColors.black,
+    letterSpacing: 0.1,
   );
 
   static const TextStyle f14w500LightGrey = TextStyle(
